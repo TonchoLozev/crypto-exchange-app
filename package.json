@@ -1,0 +1,39 @@
+{
+  "name": "Crypto-Exchnage-App",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:TonchoLozev/crypto-exchange-app.git",
+  "author": "Toncho Lozev <toncho.lozev@yahoo.com>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "webpack --mode development",
+    "start": "webpack serve --open",
+    "build": "webpack --mode production",
+    "lint-fix": "eslint . --fix"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.13",
+    "@babel/preset-env": "^7.12.13",
+    "@babel/preset-react": "^7.12.13",
+    "babel-loader": "^8.2.2",
+    "css-loader": "^5.0.1",
+    "eslint": "^7.19.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-react": "^7.22.0",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "html-webpack-plugin": "^5.0.0",
+    "sass": "^1.32.6",
+    "sass-loader": "^10.1.1",
+    "style-loader": "^2.0.0",
+    "webpack": "^5.20.1",
+    "webpack-cli": "^4.5.0",
+    "webpack-dev-server": "^3.11.2"
+  },
+  "dependencies": {
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-router-dom": "^5.2.0"
+  }
+}
