@@ -1,19 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useLocation } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { createStructuredSelector } from 'reselect';
 
 import Search from '../Search';
+import Result from '../Result';
 
 import { matchUrl } from '../../utils/urlUtils';
 
 import './styles.scss';
 
-export function Home({ search }) {
+export function Home({ searchUrl }) {
     const { pathname } = useLocation();
 
-    const childProps = {
+    const searchProps = {
         default: () => ({
             firstValue: '',
             secondValue: '',
@@ -29,13 +28,24 @@ export function Home({ search }) {
         }),
     };
 
+    const {
+        details,
+        firstValue,
+        secondValue,
+    } = searchProps[searchUrl]();
+
     return (
         <div className="home">
-            <Search />
+            <Search
+              details={details}
+              firstValue={firstValue}
+              secondValue={secondValue}
+            />
+            <Result />
         </div>
     );
 }
 
 Home.propTypes = {
-    search: PropTypes.string.isRequired,
+    searchUrl: PropTypes.string.isRequired,
 };

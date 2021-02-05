@@ -1,0 +1,41 @@
+.result {
+    width: 100%; 
+    display: flex;
+    flex-direction: column;
+
+    .icon-loading {
+        align-self: center;
+    }
+
+    &__sort-button {
+        padding: 12px 24px;
+        font-size: 14px;
+    }
+}
+
+.data-list {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    list-style: none;  
+    
+    &__item {
+        display: flex;
+        align-items: center;
+        border: 1px solid black;
+        border-radius: 2px;
+        margin-bottom: 2px;
+        padding: 2px 4px;
+
+        span {
+            width: 50%;
+            display: flex;
+            justify-content: center;
+        }
+    }
+
+    &__container {
+        width: 90%;
+        display: flex;
+    }
+}

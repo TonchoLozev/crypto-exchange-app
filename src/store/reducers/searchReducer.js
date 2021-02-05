@@ -6,6 +6,7 @@ import {
 } from '../constants/searchActionTypes';
 
 const initialState = {
+    pair: '',
     isLoading: false,
     data: null,
     error: null,
@@ -22,6 +23,7 @@ export const searchReducer = (state = initialState, action) => {
     case SEARCH_FETCH_SUCCESS:
         return {
             ...state,
+            pair: data,
             isLoading: false,
             error: null,
         };

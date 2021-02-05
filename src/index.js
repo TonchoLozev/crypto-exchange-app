@@ -19,21 +19,21 @@ export default function App() {
     return (
         <Switch>
             <Route exact path="/">
-                <Home search="default" />
+                <Home searchUrl="default" />
             </Route>
             <Route path="/:crypto/details">
-                <Home search="searchDetails" />
+                <Home searchUrl="searchDetails" />
             </Route>
             {/* In case crypto pair is written with slash */}
             <Route path="/:crypto/:crypto/details">
-                <Home search="searchDetails" />
+                <Home searchUrl="searchDetails" />
             </Route>
             <Route path="/:crypto">
-                <Home search="search" />
+                <Home searchUrl="search" />
             </Route>
             {/* In case crypto pair is written with slash */}
             <Route path="/:crypto/:crypto">
-                <Home search="search" />
+                <Home searchUrl="search" />
             </Route>
         </Switch>
     );

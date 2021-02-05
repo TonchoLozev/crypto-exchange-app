@@ -8,3 +8,29 @@ html {
     font-family: 'Roboto', sans-serif;
 }
 
+.loading-icon {
+    height: 30px;
+
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(360deg); }
+    100% { transform: rotate(0deg); }
+}
+
+button {
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    outline: none;
+    background-color: #000;
+
+    &:hover {
+        background-color: #383636;
+    }
+
+    &:active {
+        background-color: #171616;
+    }
+}

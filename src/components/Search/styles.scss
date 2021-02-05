@@ -26,19 +26,6 @@
 
     &__button {
         padding: 12px 24px;
-        background-color: #000;
-        color: #fff;
-        border: none;
         font-size: 14px;
-        border-radius: 3px;
-        outline: none;
-
-        &:hover {
-            background-color: #383636;
-        }
-
-        &:active {
-            background-color: #171616;
-        }
     }
 }
