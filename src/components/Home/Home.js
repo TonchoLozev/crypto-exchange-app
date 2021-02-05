@@ -1,14 +1,41 @@
 import React from 'react';
-import { useLocation, useRouteMatch } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { useLocation } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
 
-export function Home(props) {
-    const location = useLocation();
-    const routerMatch = useRouteMatch();
+import Search from '../Search';
 
-    console.log(location);
-    console.log(routerMatch);
-    console.log(props);
+import { matchUrl } from '../../utils/urlUtils';
+
+import './styles.scss';
+
+export function Home({ search }) {
+    const { pathname } = useLocation();
+
+    const childProps = {
+        default: () => ({
+            firstValue: '',
+            secondValue: '',
+            details: false,
+        }),
+        search: () => ({
+            ...matchUrl(pathname),
+            details: false,
+        }),
+        searchDetails: () => ({
+            ...matchUrl(pathname),
+            details: true,
+        }),
+    };
+
     return (
-        <div>Home asd</div>
+        <div className="home">
+            <Search />
+        </div>
     );
 }
+
+Home.propTypes = {
+    search: PropTypes.string.isRequired,
+};
