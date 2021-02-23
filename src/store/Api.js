@@ -1,5 +1,5 @@
 export default {
-    get: (url) => fetch(url)
+    get: (endpoint) => fetch(endpoint)
         .then((response) => {
             if (response.ok) { return response; }
             throw new Error(`Failed to fetch with code ${response.status}`);

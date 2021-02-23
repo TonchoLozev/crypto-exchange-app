@@ -24,7 +24,7 @@ export function* getHistory({ data: provider }) {
         const providers = {
             BINANCE: {
                 api: BINANCE_API,
-                query: `api/v3/trades?symbol=${firstValue.toUpperCase()}${secondValue.toUpperCase()}&limit=5`,
+                endpoint: `/api/v3/trades?symbol=${firstValue.toUpperCase()}${secondValue.toUpperCase()}&limit=5`,
                 transform: (data) => data.reduce((prev, current) => ({
                     ...prev,
                     [current.id]: {
@@ -36,7 +36,7 @@ export function* getHistory({ data: provider }) {
             },
             BITFINEX: {
                 api: BITFINEX_API,
-                query: `trades/t${firstValue.toUpperCase()}${secondValue.toUpperCase()}/hist?limit=5`,
+                endpoint: `/trades/t${firstValue.toUpperCase()}${secondValue.toUpperCase()}/hist?limit=5`,
                 transform: (data) => data.reduce((prev, current) => ({
                     ...prev,
                     [current[0]]: {
@@ -48,7 +48,7 @@ export function* getHistory({ data: provider }) {
             },
             HOUBI: {
                 api: HOUBI_API,
-                query: `market/history/trade?symbol=${firstValue.toLowerCase()}${secondValue.toLowerCase()}&size=5`,
+                endpoint: `/market/history/trade?symbol=${firstValue.toLowerCase()}${secondValue.toLowerCase()}&size=5`,
                 transform: (data) => data.data.reduce((prev, current) => ({
                     ...prev,
                     [current.id]: {
@@ -60,7 +60,7 @@ export function* getHistory({ data: provider }) {
             },
             KRAKEN: {
                 api: KRAKEN_API,
-                query: `Trades?pair=${firstValue}${secondValue}`,
+                endpoint: `/0/public/Trades?pair=${firstValue}${secondValue}`,
                 transform: (data) => Object.values(data.result)[0]
                     .slice(0, 5)
                     .reduce((prev, current, index) => ({
@@ -74,8 +74,8 @@ export function* getHistory({ data: provider }) {
             },
         };
 
-        const url = `${providers[provider].api}${providers[provider].query}`;
-        const data = yield call(Api.get, url);
+        // const url = `${providers[provider].api}${providers[provider].endpoint}`;
+        const data = yield call(Api.get, providers[provider].endpoint);
         const dataTransform = providers[provider].transform(data);
 
         yield put({ type: GET_HISTORY_SUCCESS, provider, data: dataTransform });

@@ -20,29 +20,29 @@ function* callCurrentApi(provider, firstValue, secondValue) {
         const providers = {
             BINANCE: {
                 api: BINANCE_API,
-                query: `api/v3/depth?symbol=${firstValue.toUpperCase()}${secondValue.toUpperCase()}&limit=5`,
+                endpoint: `/api/v3/depth?symbol=${firstValue.toUpperCase()}${secondValue.toUpperCase()}&limit=5`,
                 transform: (data) => data.asks[0][0].toString(),
             },
             BITFINEX: {
                 api: BITFINEX_API,
-                query: `ticker/t${firstValue.toUpperCase()}${secondValue.toUpperCase()}`,
+                endpoint: `/ticker/t${firstValue.toUpperCase()}${secondValue.toUpperCase()}`,
                 transform: (data) => data[0].toString(),
             },
             HOUBI: {
                 api: HOUBI_API,
-                query: `market/detail/merged?symbol=${firstValue.toLowerCase()}${secondValue.toLowerCase()}`,
+                endpoint: `/market/detail/merged?symbol=${firstValue.toLowerCase()}${secondValue.toLowerCase()}`,
                 transform: (data) => data.tick.bid[0].toString(),
             },
             KRAKEN: {
                 api: KRAKEN_API,
-                query: `Ticker?pair=${firstValue.toUpperCase()}${secondValue.toUpperCase()}`,
+                endpoint: `/0/public/Ticker?pair=${firstValue.toUpperCase()}${secondValue.toUpperCase()}`,
                 transform: (data) => Object.values(data.result)[0].a[0]
                     .toString(),
             },
         };
 
-        const url = `${providers[provider].api}${providers[provider].query}`;
-        const data = yield call(Api.get, url);
+        // const url = `${providers[provider].api}${providers[provider].endpoint}`;
+        const data = yield call(Api.get, providers[provider].endpoint);
         const dataTransform = providers[provider].transform(data);
 
         yield put({ type: SET_PROVIDER_DATA, provider, data: dataTransform });

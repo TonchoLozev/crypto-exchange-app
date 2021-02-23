@@ -31,7 +31,6 @@ module.exports = {
                 ],
             },
         ],
-
     },
     plugins: [
         new HtmlWebpackPlugin({
@@ -40,6 +39,28 @@ module.exports = {
     ],
     devServer: {
         historyApiFallback: true,
+        proxy: {
+            '/api/v3/*': {
+                target: 'https://api.binance.com',
+                secure: false,
+                changeOrigin: true,
+            },
+            '/ticker/*': {
+                target: 'https://api-pub.bitfinex.com/v2',
+                secure: false,
+                changeOrigin: true,
+            },
+            '/market/*': {
+                target: 'https://api.huobi.pro',
+                secure: false,
+                changeOrigin: true,
+            },
+            '/0/public/*': {
+                target: 'https://api.kraken.com',
+                secure: false,
+                changeOrigin: true,
+            },
+        },
     },
     devtool: 'source-map',
 };
